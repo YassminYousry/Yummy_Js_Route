@@ -18,6 +18,7 @@ $(document).ready(function () {
   });
 
   $(".logo").click(500, function () {
+    closeNav();
     search.innerHTML = "";
     searchByName("");
   })
@@ -123,6 +124,58 @@ $(document).ready(function () {
       loadFadeOut()
     }
   }
+  // =================== Search By First Letter ==================
+  async function searchByFirstLetter(firstLetter) {
+    loadFadeIn();
+    section.innerHTML = ""
+    
+    firstLetter == "" ? firstLetter = "a" : "";
+    let response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`)
+    let data = await response.json()
+
+    data.meals ? displayMeals(data.meals) : displayMeals([])
+    loadFadeOut();
+
+}
+  // =================== Search Inputs =================
+  function searchInputs() {
+    search.innerHTML = `
+  <div class="container w-75 ps-5">
+      <div class="row py-4 ">
+        <div class="col-10 col-md-6 my-3 m-auto">
+          <input id="searchName" class="form-control bg-white" type="text" placeholder="Search By Name">
+      </div>
+      <div class="col-10 col-md-6 my-3 m-auto">
+          <input id="searchFirstLetter" maxlength="1" class="form-control bg-white " type="text" placeholder="Search By First Letter">
+      </div>
+    </div>
+  </div>
+  `
+
+    $("#searchName").keyup(function (e) {
+      let keyValue = e.target.value;
+      if (keyValue === "") {
+        section.innerHTML = ""
+      } else {
+        $("#loading").css("top", "100px");
+        searchByName(keyValue);
+
+      }
+    })
+  
+    $("#searchFirstLetter").keyup(function (e) {
+      let keyValue = e.target.value;
+      $("#searchFirstLetter").css("zIndex", 9999)
+      if (keyValue === "") {
+        section.innerHTML = ""
+      } else {
+        $("#loading").css("top", "100px");
+        searchByFirstLetter(keyValue);
+      }
+    })
+
+    section.innerHTML = ""
+  }
 
   // =================== Display Meals =================
   function displayMeals(mealsList) {
@@ -215,33 +268,6 @@ $(document).ready(function () {
     loadFadeOut();
   }
 
-  // =================== Search Inputs =================
-  function searchInputs() {
-    search.innerHTML = `
-  <div class="container p-5">
-    <div class="row">
-      <div class="row py-4 ">
-        <div class="col-md-6 text-white">
-          <input id="searchName" class="form-control bg-white" type="text" placeholder="Search By Name">
-      </div>
-      <div class="col-md-6">
-          <input  maxlength="1" class="form-control bg-white " type="text" placeholder="Search By First Letter">
-      </div>
-        </div>
-    </div>
-  </div>
-  `
-    $("#searchName").keyup(function (e) {
-      let keyValue = e.target.value;
-      if (keyValue === "") {
-        section.innerHTML = ""
-      } else {
-        searchByName(keyValue);
-      }
-    })
-
-    section.innerHTML = ""
-  }
 
   // ====================== Category =================
   async function getCategories() {
