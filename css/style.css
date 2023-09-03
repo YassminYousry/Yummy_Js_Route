@@ -114,7 +114,12 @@ li {
     background-color: #f9f6f6ca;
     right: 0;
     left: 0;
-    
+    bottom: 0px;
+    top: 100%;
+    transition: all ease 0.5s;
+}
+.mealImg:hover .layer{
+    top: 0;
 }
 .mealImg{
     cursor: pointer;
