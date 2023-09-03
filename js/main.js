@@ -130,7 +130,7 @@ $(document).ready(function () {
     let divs = ``;
     for (let i = 0; i < mealsList.length; i++) {
       divs += `
-    <div class="col-9 col-md-3 mb-4 m-auto " >
+    <div class="col-8 col-md-3 mb-4 m-auto " >
       <div mealId ='${mealsList[i].idMeal}' class = "mealImg p-0 position-relative rounded-2 overflow-hidden cursor-pointer" > 
         <img src="${mealsList[i].strMealThumb}" alt="meal" />
         <div class="layer d-flex align-items-center fs-3 fw-semibold px-3">
@@ -263,7 +263,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealsList.length; i++) {
       divs += `
-        <div class="col-md-3">
+        <div class="col-8 col-md-3 mb-3 m-auto">
                 <div strCat = '${mealsList[i].strCategory}' class="mealImg position-relative overflow-hidden rounded-2 cursor-pointer">
                     <img class="w-100" src="${mealsList[i].strCategoryThumb}" alt="" srcset="">
                     <div class="layer position-absolute text-center text-black p-2">
@@ -316,7 +316,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealsList.length; i++) {
       divs += `
-        <div class="col-md-3">
+        <div class="col-md-3 col-6 m-auto mb-3">
                 <div strArea = '${mealsList[i].strArea}' class="rounded-2 text-center cursor-pointer areaDiv text-white m-3">
                         <i class="fa-solid fa-house-laptop fa-4x"></i>
                         <h3>${mealsList[i].strArea}</h3>
@@ -362,7 +362,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealsList.length; i++) {
       divs += `
-        <div class="col-md-3">
+        <div class="col-md-3 col-8 m-auto mb-3">
                 <div strIngredient='${mealsList[i].strIngredient}' class="rounded-2 text-center cursor-pointer text-white m-3 ingredientsDiv">
                         <i class="fa-solid fa-drumstick-bite fa-4x"></i>
                         <h3>${mealsList[i].strIngredient}</h3>
